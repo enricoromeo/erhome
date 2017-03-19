@@ -17,7 +17,10 @@ Route::get('/customer','CustomerController@index')
 
 */
 Route::get('/posts', 'PostController@index');
-
+Route::get('post/{id}', 'PostController@show');
+Route::get('addPost','PostController@create');
+Route::post('post','PostController@store');
+//Route::post('post/{id}', 'PostController@store');
 
 Route::get('/', function () {
     return view('home');

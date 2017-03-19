@@ -17,7 +17,7 @@ class PostController extends Controller
       $posts = Post::all();
       //$customers= Customer::all();
       //dd($posts);
-      return view('post.post', [ 'posts' => $posts ]);
+      return view('posts.indexPost', [ 'posts' => $posts ]);
       //return view::make('invoce.invoice')->with('items', $item);
     }
 
@@ -28,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('posts.addPost');
     }
 
     /**
@@ -37,9 +38,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+        $post->title = $request->post_title;
+        $post->text = $request->post_text;
+        $post->save();
+        return view('posts.addPost');
     }
 
     /**
@@ -48,9 +54,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $id)
     {
-        //
+        return view('posts.showPost', ['post' => Post::findOrFail($id)]);
     }
 
     /**
