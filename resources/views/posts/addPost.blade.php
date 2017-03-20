@@ -4,26 +4,49 @@
 
 @section('title', 'Add Post')
 
-<form action="{{ action('PostController@store') }}" method = "post">
-   <input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
 
-   <table>
-      <tr>
-         <td>Title</td>
-         <td><input type='text' name='post_title' /></td>
-      </tr>
-      <tr>
-         <td>Text</td>
-         <td><input type='text' name='post_text' /></td>
-      </tr>
-      <tr>
-         <td colspan = '2'>
-            <input type = 'submit' value = "Add Post"/>
-         </td>
-      </tr>
-   </table>
+<div class="container">
+  <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+          <div class="page-header">
+              <h1>Add a Post <small>write something</small></h1>
+          </div>
 
-</form>
+          <p class="lead">write something</p>
+
+          @if (count($errors) > 0)
+            <div class="alert alert-danger">
+              <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+
+          @if (session('success_message'))
+            <div class="alert alert-success">
+              {{ session('success_message') }}
+            </div>
+          @endif
+
+          <form method="POST" action="{{ action('PostController@store') }}">
+            {{ csrf_field() }}
+          <div class="form-group">
+              <label for="post_title">Title</label>
+              <input id="post_title" type="text" class="form-control" name="post_title" value="{{ old('post_title') }}" placeholder="Your Title">
+          </div>
+
+          <div class="form-group">
+              <label for="post_text">Text Comment</label>
+              <textarea rows="10" id="post_text" class="form-control" name="post_text" placeholder="Your message">{{ old('post_text') }}</textarea>
+          </div>
+            <button type="submit" class="btn btn-primary btn-lg">Send</button>
+          </form>
+
+      </div>
+  </div>
+</div>
 
 
 @stop
