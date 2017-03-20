@@ -16,11 +16,17 @@ use Illuminate\Http\Request;                (Facades)
 Route::get('/customer','CustomerController@index')
 
 */
+
+use Illuminate\Http\Request;
+use App\Mail\FeedbackReceived;
+use Illuminate\Support\Facades\Mail;
+
+
 Route::get('/posts', 'PostController@index');
 Route::get('post/{id}', 'PostController@show');
 Route::get('addPost','PostController@create');
 Route::post('post','PostController@store');
-//Route::post('post/{id}', 'PostController@store');
+
 
 Route::get('/', function () {
     return view('home');
@@ -34,10 +40,6 @@ Route::get('about', function() {
 Route::get('contact', function() {
     return view('contact');
 });
-
-use Illuminate\Http\Request;
-use App\Mail\FeedbackReceived;
-use Illuminate\Support\Facades\Mail;
 
 Route::post('contact', function(Request $request) {
 

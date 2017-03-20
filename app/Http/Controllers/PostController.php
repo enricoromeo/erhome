@@ -41,10 +41,16 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+      $this->validate($request, [
+        'post_title' => 'required|max:255',
+        'post_text' => 'required',
+      ]);
         $post = new Post;
         $post->title = $request->post_title;
         $post->text = $request->post_text;
         $post->save();
+
+        $request->session()->flash('success_message', 'Post was successful added!');
         return view('posts.addPost');
     }
 
