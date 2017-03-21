@@ -58,3 +58,7 @@ Route::post('contact', function(Request $request) {
   ]);
 
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
