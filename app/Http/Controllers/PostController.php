@@ -15,6 +15,7 @@ class PostController extends Controller
     public function index()
     {
       $posts = Post::all();
+      $posts = Post::orderBy('created_at', 'desc')->get();
       //$customers= Customer::all();
       //dd($posts);
       return view('posts.indexPost', [ 'posts' => $posts ]);
@@ -45,7 +46,7 @@ class PostController extends Controller
         'post_title' => 'required|max:255',
         'post_text' => 'required',
       ]);
-      
+
         $post = new Post;
         $post->title = $request->post_title;
         $post->text = $request->post_text;
