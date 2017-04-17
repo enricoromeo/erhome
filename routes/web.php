@@ -23,16 +23,20 @@ use Illuminate\Support\Facades\Mail;
 
 
 Route::get('/posts', 'PostController@index');
-Route::get('post/{id}', 'PostController@show');
+Route::get('posts/{post}', 'PostController@show');
 
 Route::get('addPost','PostController@create');
 Route::post('post','PostController@store');
+
+//Ruote::get('post/{id}/edit','PostController@edit');
+//Ruote::post('post/{id}', 'PostController@update');
+//Ruote::post('post', 'PostController@destroy');
+//Route::resource('posts', 'PostController');
 
 
 Route::get('/', function () {
     return view('home');
 });
-
 
 Route::get('about', function() {
     return view('about');

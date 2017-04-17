@@ -8,13 +8,21 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-md-8 col-md-offset-2">
-        <h4><small>RECENT POSTS</small></h4>
-        <hr>
-        <h2>{{ $post->title }}</h2>
-        <h5><span class="glyphicon glyphicon-time"></span> Post by eromeo, {{ $post->created_at }}.</h5>
-        <h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-        <p>{{ $post->text }}</p>
-        <br><br>
+
+        <!--render post-->
+        @include('posts.partials.post')
+
+        <!-- Delete Button -->
+        <td>
+            <form action="{{ $post->id }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa fa-trash"></i> Delete
+                </button>
+            </form>
+        </td>
     </div>
 
   </div>

@@ -43,14 +43,16 @@ class PostController extends Controller
     public function store(Request $request)
     {
       $this->validate($request, [
-        'post_title' => 'required|max:255',
-        'post_text' => 'required',
+        'title' => 'required|max:255',
+        'text' => 'required',
       ]);
 
-        $post = new Post;
-        $post->title = $request->post_title;
-        $post->text = $request->post_text;
-        $post->save();
+        Post::create(request(['title', 'text']));
+
+        //$post = new Post;
+        //$post->title = $request->post_title;
+        //$post->text = $request->post_text;
+        //$post->save();
 
         $request->session()->flash('success_message', 'Post was successful added!');
         return view('posts.addPost');
@@ -62,9 +64,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $id)
+    public function show(Post $post)
+
     {
-        return view('posts.showPost', ['post' => Post::findOrFail($id)]);
+        //return $post;
+        return view('posts.showPost', compact('post'));
+
+        //$post = Post::find($id);
+        //return view('posts.showPost', ['post' => Post::findOrFail($id)]);
     }
 
     /**
@@ -73,9 +80,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $id)
     {
-        //
+        return view('posts.editPost', ['post' => Post::findOrFail($id)]);
     }
 
     /**
@@ -85,19 +92,31 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $id)
     {
-        //
+      $this->validate($request, [
+        'post_title' => 'required|max:255',
+        'post_text' => 'required',
+      ]);
+
+        $post = Post::findOrFail($id);
+        $post->title = $request->post_title;
+        $post->text = $request->post_text;
+        $post->save();
+
+        $request->session()->flash('success_message', 'Post was successful added!');
+        return view('posts.indexPost');
     }
 
-    /**
+    /**user->destroy($id);
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $id)
     {
-        //
+      $post = Post::find($id);
+      $post->delete();
     }
 }

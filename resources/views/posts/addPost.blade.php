@@ -14,32 +14,20 @@
 
           <p class="lead">write something</p>
 
-          @if (count($errors) > 0)
-            <div class="alert alert-danger">
-              <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </div>
-          @endif
+          @include ('layouts.errors')
 
-          @if (session('success_message'))
-            <div class="alert alert-success">
-              {{ session('success_message') }}
-            </div>
-          @endif
+          @include ('layouts.successmessage')
 
           <form method="POST" action="{{ action('PostController@store') }}">
             {{ csrf_field() }}
           <div class="form-group">
               <label for="post_title">Title</label>
-              <input id="post_title" type="text" class="form-control" name="post_title" value="{{ old('post_title') }}" placeholder="Your Title">
+              <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Your Title">
           </div>
 
           <div class="form-group">
               <label for="post_text">Text Comment</label>
-              <textarea rows="10" id="post_text" class="form-control" name="post_text" placeholder="Your message">{{ old('post_text') }}</textarea>
+              <textarea rows="10" id="text" class="form-control" name="text" placeholder="Your message">{{ old('text') }}</textarea>
           </div>
             <button type="submit" class="btn btn-primary btn-lg">Send</button>
           </form>
