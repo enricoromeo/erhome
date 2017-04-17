@@ -16,7 +16,6 @@ use Illuminate\Http\Request;                (Facades)
 Route::get('/customer','CustomerController@index')
 
 */
-
 use Illuminate\Http\Request;
 use App\Mail\FeedbackReceived;
 use Illuminate\Support\Facades\Mail;
@@ -27,6 +26,9 @@ Route::get('posts/{post}', 'PostController@show');
 
 Route::get('addPost','PostController@create');
 Route::post('post','PostController@store');
+
+Route::get('/home', 'HomeController@index');
+Route::post('/posts/{post}/comments', 'CommentController@store');
 
 //Ruote::get('post/{id}/edit','PostController@edit');
 //Ruote::post('post/{id}', 'PostController@update');
@@ -65,5 +67,3 @@ Route::post('contact', function(Request $request) {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');

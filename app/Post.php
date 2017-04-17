@@ -13,6 +13,12 @@ class Post extends Model
 
   }
 
+  public function addComment($text)
+  {
+
+    $this->comments()->create(compact('text'));
+
+  }
 
 
 }
