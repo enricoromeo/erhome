@@ -15,7 +15,6 @@ class PostsTableSeeder extends Seeder
          'id' => 1,
          'title' => str_random(5),
          'text' => str_random(20),
-
      ]);
     }
 }

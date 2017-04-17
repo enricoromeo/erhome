@@ -12,7 +12,21 @@
         <!--render post-->
         @include('posts.partials.post')
 
-        <!-- Delete Button -->
+        <hr>
+
+        <div class="comments">
+          <ul class="listgroup">
+            @foreach ($post->comments as $comment)
+              <strong>
+                  {{ $comment->created_at->diffForHumans() }}: &nbsp;
+              </strong>
+              <li class="list-group-item">
+                  {{ $comment->text }}
+              </li>
+            @endforeach
+          </ul>
+        </div>
+        <!-- Delete Button
         <td>
             <form action="{{ $post->id }}" method="POST">
                 {{ csrf_field() }}
@@ -22,7 +36,7 @@
                     <i class="fa fa-trash"></i> Delete
                 </button>
             </form>
-        </td>
+        </td> -->
     </div>
 
   </div>
