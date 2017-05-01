@@ -5,4 +5,7 @@
   <a href="{{ url('/contact') }}">Contact</a>
   <a href="{{ url('/post') }}">Posts</a>
   <a href="#">Clients</a>
+  @if (Auth::check())
+    <a href="#">{{ Auth::user()->name }}</a>
+  @endif
 </div>

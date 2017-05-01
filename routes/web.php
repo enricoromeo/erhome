@@ -21,7 +21,7 @@ use App\Mail\FeedbackReceived;
 use Illuminate\Support\Facades\Mail;
 
 
-Route::get('/posts', 'PostController@index');
+Route::get('posts', 'PostController@index')->name('home');
 Route::get('posts/{post}', 'PostController@show');
 
 Route::get('addPost','PostController@create');
@@ -29,6 +29,13 @@ Route::post('post','PostController@store');
 
 Route::get('/home', 'HomeController@index');
 Route::post('/posts/{post}/comments', 'CommentController@store');
+
+Route::get('register', 'RegistrationController@create');
+Route::post('register', 'RegistrationController@store');
+Route::get('/login', 'SessionsController@create');
+Route::post('/login', 'SessionsController@store');
+Route::get('/logout', 'SessionsController@destroy');
+
 
 //Ruote::get('post/{id}/edit','PostController@edit');
 //Ruote::post('post/{id}', 'PostController@update');
@@ -66,4 +73,4 @@ Route::post('contact', function(Request $request) {
 
 });
 
-Auth::routes();
+//Auth::routes();

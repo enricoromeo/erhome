@@ -12,6 +12,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+       $this->middleware('auth')->except(['index', 'show']);
+     }
+
+
     public function index()
     {
       $posts = Post::all();
@@ -47,15 +53,19 @@ class PostController extends Controller
         'text' => 'required',
       ]);
 
-        Post::create(request(['title', 'text']));
+      auth()->user()->publish(
 
-        //$post = new Post;
-        //$post->title = $request->post_title;
-        //$post->text = $request->post_text;
-        //$post->save();
+        new Post(request(['title', 'text']))
 
-        $request->session()->flash('success_message', 'Post was successful added!');
-        return view('posts.addPost');
+      );
+
+      //$post = new Post;
+      //$post->title = $request->post_title;
+      //$post->text = $request->post_text;
+      //$post->save();
+
+      $request->session()->flash('success_message', 'Post was successful added!');
+      return view('posts.addPost');
     }
 
     /**
