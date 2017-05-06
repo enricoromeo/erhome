@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -21,10 +22,20 @@ class PostController extends Controller
     public function index()
     {
       $posts = Post::all();
-      $posts = Post::orderBy('created_at', 'desc')->get();
+      $posts = Post::orderBy('created_at', 'desc')
+        ->filter(request(['month','year']))
+        ->get();
+
       //$customers= Customer::all();
       //dd($posts);
-      return view('posts.indexPost', [ 'posts' => $posts ]);
+      $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
+        ->groupBy('year','month')
+        ->orderByRaw('min(created_at) desc')
+        ->get()
+        ->toArray();
+
+
+      return view('posts.indexPost', [ 'posts' => $posts, 'archives' => $archives ]);
       //return view::make('invoce.invoice')->with('items', $item);
     }
 

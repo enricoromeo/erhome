@@ -4,18 +4,17 @@
 
 @section('title', 'List of Posts')
 
+  <div class="container">
+      <div class="row">
+          <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+            @foreach($posts as $post)
 
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-md-8 col-md-offset-2">
-      @foreach($posts as $post)
+            @include('posts.partials.post')
 
-      @include('posts.partials.post')
+            @endforeach
+        </div>
 
-      @endforeach
     </div>
-
   </div>
-</div>
 
 @stop

@@ -1,11 +1,17 @@
-<h4><small>RECENT POSTS</small></h4>
+
+
+<div class="post-preview">
+
+    <h2 class="post-title"> {{ $post->title }}</h2>
+    <p class="post-meta">Post by ,  <a href="#">{{ $post->user->name }}</a> on {{ $post->created_at->toFormattedDateString() }}.</p>
+
+    <p>{{ $post->text }}</p>
+      <h5><small> Read the full post at:
+        <a href="/erhome/public/posts/{{ $post->id }}">
+          http://www.romeoenrico.com/posts/{{ $post->id }}
+        </a>
+      </small></h5>
+
+</div>
 <hr>
-<h2>
-  <a href="/erhome/public/posts/{{ $post->id }}">
-    {{ $post->title }}
-  </a>
-</h2>
-<h5><span class="glyphicon glyphicon-time"></span> Post by {{ $post->user->name }}, {{ $post->created_at->toFormattedDateString() }}.</h5>
-<h5><span class="label label-danger">Food</span> <span class="label label-primary">Ipsum</span></h5><br>
-<p>{{ $post->text }}</p>
-<br><br>
+<br>
