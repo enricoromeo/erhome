@@ -7,7 +7,7 @@
 
 <div class="container-fluid">
   <div class="row content">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2 col-md-10 offset-md-1">
 
         <!--render post-->
         @include('posts.partials.post')

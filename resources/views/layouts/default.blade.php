@@ -20,7 +20,7 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/clean-blog.css" rel="stylesheet">
+    <link href="{{ asset('css/clean-blog.css') }}" rel="stylesheet" type="text/css" >
 
     <!-- Temporary navbar container fix -->
     <style>
@@ -59,7 +59,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/clean-blog.js"></script>
+    <script type="text/javascript" src="{{ asset('js/clean-blog.js') }}"></script>
 
 </body>
 

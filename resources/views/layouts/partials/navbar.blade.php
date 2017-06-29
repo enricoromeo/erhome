@@ -14,10 +14,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                  <a href="#">Home</a>
+                  <a href="{{ url('/posts') }}">Home</a>
               </li>
               <li class="nav-item">
-                  <a href="#">Contact</a>
+                  <a href="{{ url('/contact') }}">Contact</a>
               </li>
               <li class="nav-item">
                   <a href="#">Posts</a>
