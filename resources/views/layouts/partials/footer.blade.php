@@ -65,7 +65,13 @@
                 <ul>
                   @foreach ($archives as $stats)
                   <li>
-                    <a href="#">{{ $stats['month'] . ' ' . $stats['year'] }}</a>
+                    <!--<a href="/?month={{ $stats['month'] }}year={{ $stats['year'] }} "> -->
+
+                    <a href="{{\Request::url()}}?month={{ $stats['month'] }}&year={{ $stats['year'] }} ">
+
+                      {{ $stats['month'] . ' ' . $stats['year'] . ' ' . '( ' . $stats['published'] . ' posts )' }}
+
+                    </a>
                   </li>
                   @endforeach
                 </ul>

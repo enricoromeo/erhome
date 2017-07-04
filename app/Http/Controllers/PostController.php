@@ -23,11 +23,14 @@ class PostController extends Controller
     {
       $posts = Post::all();
       $posts = Post::orderBy('created_at', 'desc')
-        ->filter(request(['month','year']))
-        ->get();
+        ->filter(request(['month','year']));
+      //  ->get();
 
+
+      $posts = $posts->get();
       //$customers= Customer::all();
       //dd($posts);
+
       $archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')
         ->groupBy('year','month')
         ->orderByRaw('min(created_at) desc')
@@ -88,9 +91,8 @@ class PostController extends Controller
     public function show(Post $post)
 
     {
-        //return $post;
-        return view('posts.showPost', compact('post'));
 
+        return view('posts.showPost', compact('post'));
         //$post = Post::find($id);
         //return view('posts.showPost', ['post' => Post::findOrFail($id)]);
     }
